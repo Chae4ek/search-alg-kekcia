@@ -83,9 +83,12 @@ public abstract class _6_HistoryHeuristic extends GameEngineStuff {
             }*/
             /*------------ Альтернативный Relative History Heuristic ------------*/
             /*if (beta <= value) { // fail-high
-                // эвристика истории:
                 final int side2move = isMyMove ? MY_COLOR : ENEMY_COLOR;
-                moveHistory[side2move][move.from][move.to] += depth * depth;
+
+                // эвристика истории:
+                if (isNonCapture(move)) {
+                    moveHistory[side2move][move.from][move.to] += depth * depth;
+                }
 
                 // эвристика бабочки:
                 while (it.hasPrevious()) {
